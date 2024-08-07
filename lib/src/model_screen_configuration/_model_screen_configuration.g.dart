@@ -275,11 +275,11 @@ class ModelScreenConfiguration extends _ModelScreenConfiguration {
   //
 
   @override
-  ModelScreenConfiguration copyWith(BaseModel? other) {
+  ModelScreenConfiguration copyWith(BaseModel? other, {bool merge = false}) {
     final a = this.toJson();
-    final b = other?.toJson();
-    final c = {...a, ...?b};
-    return ModelScreenConfiguration.fromJson(c);
+    final b = other?.toJson() ?? {};
+    final data = merge ? mergeDataDeep(a, b) : {...a, ...b};
+    return ModelScreenConfiguration.fromJson(data);
   }
 
   //
